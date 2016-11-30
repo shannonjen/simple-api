@@ -32,7 +32,7 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
     ```bash
     $ rails g controller todos
     ```
-7. Let's add some actions to our controller. We are using the :json option to convert the ActiveRecord objects to JSON and render that JSON back to the browser.
+7. Let's add some actions to our controller. We are using the [ActionController::Base#render](http://guides.rubyonrails.org/layouts_and_rendering.html#using-render) method's :json option to convert the ActiveRecord objects to JSON and render that JSON back to the browser.
 
     ```ruby
     class TodosController < ApplicationController
@@ -132,7 +132,7 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
     ```
 * Now we are able to create Todos
 
-![alt text]( postman2.png "POSTMAN")
+  ![alt text]( postman2.png "POSTMAN")
 
 #### ***UPDATE*** patch "/:id" => "todos#update"
 
