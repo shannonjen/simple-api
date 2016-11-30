@@ -153,6 +153,7 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
     ```bash
     $ curl -X DELETE  http://localhost:3000/3
     ```
+  
 #### ***DELETE*** delete "/" => "todos#destroy_all"
 
 * Let's destroy all of our todos by sending a delete request to '/'.
