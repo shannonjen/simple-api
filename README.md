@@ -143,6 +143,7 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
 #### ***UPDATE*** patch "/:id" => "todos#update"
 
 * Let's update our last todo by sending a patch request to our last todo. The todo with a primary key (id) of 3.
+
     ```bash
     $ curl -X PATCH -H 'Content-Type: application/json' -d '{"title":"Make myself proud"}' http://localhost:3000/3
     ```
@@ -150,13 +151,15 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
 #### ***DELETE*** delete "/:id" => "todos#destroy"
 
 * Let's destroy the newly updated todo by sending a delete request to '/3'.
+
     ```bash
     $ curl -X DELETE  http://localhost:3000/3
     ```
-  
+
 #### ***DELETE*** delete "/" => "todos#destroy_all"
 
 * Let's destroy all of our todos by sending a delete request to '/'.
+
     ```bash
     $ curl -X DELETE  http://localhost:3000/
     ```
