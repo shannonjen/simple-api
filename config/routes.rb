@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  post "/" => "todos#create"
+  delete "/" => "todos#destroy_all"
+  get "/:id" => "todos#show"
+  patch "/:id" => "todos#update"
+  delete "/:id" => "todos#destroy"
+
+  root 'todos#index'
 end
