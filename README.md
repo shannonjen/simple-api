@@ -1,24 +1,37 @@
-# README
+# Simple API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Let's create a simple single resource API for Todos
 
-Things you may want to cover:
 
-* Ruby version
+1. Create a Rails App with PostgreSQL as Database
 
-* System dependencies
+```bash
+$ rails new simple-api -d postgresql
+```
+2. cd into application folder
 
-* Configuration
+```bash
+$ cd simple-api
+```
 
-* Database creation
+3. Use a model generator to create the Todo model with a title attribute
 
-* Database initialization
+```bash
+$ rails g model Todo title:string
+```
 
-* How to run the test suite
+4. (Make sure you have Postgres running locally first) Create the development and test Databases
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+$ rake db:create
+```
 
-* Deployment instructions
+5. Run the migration to create the todos table
 
-* ...
+```bash
+$ rake db:migrate
+```
+
+6.
+
+7.
