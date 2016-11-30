@@ -124,6 +124,7 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
 #### ***CREATE*** post "/" => "todos#create"
 
 * We are restricted to GET requests via the browser's URL window. We can use cURL or Postman to make more complicated HTTP requests. Let's try and make a POST request using Postman.
+    [alt text]( postman2.png "POSTMAN")
 * We get a 422: Unprocessable Entity. This is because Rails has a default configuration to reject POST requests without authenticity tokens. A protective measurement to prevent malicious CSRF attacks. Since we are building a stateless API, let's turn off the protection by removing the [protect_from_forgery](http://api.rubyonrails.org/classes/ActionController/RequestForgeryProtection.html) method in the ApplicationController.
 
     ```ruby
