@@ -130,7 +130,7 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
       ```bash
       $ curl -X POST -H 'Content-Type: application/json' -d '{"title":"Make Millions"}' http://localhost:3000
       ```
-* We get a 422: Unprocessable Entity. This is because Rails has a default configuration to reject POST requests without authenticity tokens. A protective measurement to prevent malicious CSRF attacks. Since we are building a stateless API, let's turn off the protection by removing the [protect_from_forgery](http://api.rubyonrails.org/classes/ActionController/RequestForgeryProtection.html) method in the ApplicationController. 
+* We get a 422: Unprocessable Entity. This is because Rails has a default configuration to reject POST requests without authenticity tokens. A protective measurement to prevent malicious CSRF attacks. Since we are building a stateless API, let's turn off the protection by removing the [protect_from_forgery](http://api.rubyonrails.org/classes/ActionController/RequestForgeryProtection.html) method in the ApplicationController.
 
     ```ruby
     class ApplicationController < ActionController::Base
@@ -143,9 +143,9 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
 #### ***UPDATE*** patch "/:id" => "todos#update"
 
 * Let's update our last todo by sending a patch request to our last todo. The todo with a primary key (id) of 3.
-  ```bash
-  $ curl -X PATCH -H 'Content-Type: application/json' -d '{"title":"Make myself proud"}' http://localhost:3000/3
-  ```
+    ```bash
+    $ curl -X PATCH -H 'Content-Type: application/json' -d '{"title":"Make myself proud"}' http://localhost:3000/3
+    ```
 
 #### ***DELETE*** delete "/:id" => "todos#destroy"
 
