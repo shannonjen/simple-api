@@ -3,26 +3,32 @@
 Let's create a simple single resource API for Todos. We will use the ActionController::Base#render method to render JSON.
 
 1. Create a Rails App (with PostgreSQL set as Database)
+
     ```bash
     $ rails new simple-api -d postgresql
     ```
 2. cd into application folder
+
     ```bash
     $ cd simple-api
     ```
 3. We can use a model generator to create the Todo model with a title attribute. The model generator will also create a migration file to create the todos table.
+
     ```bash
     $ rails g model Todo title:string
     ```
 4. Create the development and test Databases (make sure you have Postgres running)
+
     ```bash
     $ rake db:create
     ```
 5. Use a rake command to run the migration (created by the model generator) to create the todos table
+
     ```bash
     $ rake db:migrate
     ```
 6. We can use a generator to create the Todos controller
+
     ```bash
     $ rails g controller todos
     ```
