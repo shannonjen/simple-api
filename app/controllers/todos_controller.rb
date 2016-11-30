@@ -9,7 +9,7 @@ class TodosController < ApplicationController
 
   def destroy_all
     Todo.delete_all
-    render text: ""
+    render plain: ""
   end
 
   def show
@@ -22,7 +22,7 @@ class TodosController < ApplicationController
 
   def destroy
     Todo.delete(params[:id])
-    render text: ""
+    render plain: ""
   end
 
   private
