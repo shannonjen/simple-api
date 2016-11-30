@@ -34,116 +34,106 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
     ```
 7. Let's add some actions to our controller. We are using the :json option to convert the ActiveRecord objects to JSON and render that JSON back to the browser.
 
-```ruby
-class TodosController < ApplicationController
-  def index
-    render json: Todo.all
-  end
+    ```ruby
+    class TodosController < ApplicationController
+      def index
+        render json: Todo.all
+      end
 
-  def create
-    render json: Todo.create(todo_params)
-  end
+      def create
+        render json: Todo.create(todo_params)
+      end
 
-  def destroy_all
-    Todo.delete_all
-    render text: ""
-  end
+      def destroy_all
+        Todo.delete_all
+        render text: ""
+      end
 
-  def show
-    render json: Todo.find(params[:id])
-  end
+      def show
+        render json: Todo.find(params[:id])
+      end
 
-  def update
-    render json: Todo.update(params[:id], todo_params)
-  end
+      def update
+        render json: Todo.update(params[:id], todo_params)
+      end
 
-  def destroy
-    Todo.delete(params[:id])
-    render text: ""
-  end
+      def destroy
+        Todo.delete(params[:id])
+        render text: ""
+      end
 
-  private
+      private
 
-  def todo_params
-    params.permit(:title)
-  end
-end
-```
-
+      def todo_params
+        params.permit(:title)
+      end
+    end
+    ```
 8. Add routing to routes.rb
 
-```ruby
-Rails.application.routes.draw do
-  post "/" => "todos#create"
-  delete "/" => "todos#destroy_all"
-  get "/:id" => "todos#show"
-  patch "/:id" => "todos#update"
-  delete "/:id" => "todos#destroy"
+    ```ruby
+    Rails.application.routes.draw do
+      post "/" => "todos#create"
+      delete "/" => "todos#destroy_all"
+      get "/:id" => "todos#show"
+      patch "/:id" => "todos#update"
+      delete "/:id" => "todos#destroy"
 
-  root 'todos#index'
-end
-```
-
+      root 'todos#index'
+    end
+    ```
 9. Add some dummy data through rails c (or use seeds.rb)
 
-```bash
-$ rails c
-irb(main):001:0> Todo.create(title: "Learn Rails")
-irb(main):001:0> Todo.create(title: "Make Todo App")
-```
-
+    ```bash
+    $ rails c
+    irb(main):001:0> Todo.create(title: "Learn Rails")
+    irb(main):001:0> Todo.create(title: "Make Todo App")
+    ```
 10. Fire up the server
 
-```bash
-$ rails s
-```
+    ```bash
+    $ rails s
+    ```
 
 ### Let's check out our ***CRUD***
 
-11. ***READ*** root 'todos#index'
+#### ***READ*** root 'todos#index'
 
-Go to http://localhost:3000/ in your browser.
-
+* Go to http://localhost:3000/ in your browser.
 * This is an HTTP get request to '/', which points to the index action in the TodosController:
 
-```ruby
-def index
-  render json: Todo.all
-end
-```
-
+    ```ruby
+    def index
+      render json: Todo.all
+    end
+    ```
 * This index action queries the todos table for all of the Todos, rendering them as JSON
 
-12. ***READ*** get "/:id" => "todos#show"
+#### ***READ*** get "/:id" => "todos#show"
 
-Go to http://localhost:3000/1 in your browser.
-
+* Go to http://localhost:3000/1 in your browser.
 * This is an HTTP get request to '/1', which points to the show action in the TodosController (with params[:id] = 1):
 
-```ruby
-def show
-  render json: Todo.find(params[:id])
-end
-```
-
+    ```ruby
+    def show
+      render json: Todo.find(params[:id])
+    end
+    ```
 * This show action finds the todo with primary key 1, rendering the response as JSON
 
-13. ***CREATE*** post "/" => "todos#create"
+#### ***CREATE*** post "/" => "todos#create"
 
-We are restricted to GET requests via the browser's URL window. We can use cURL or Postman to make more complicated HTTP requests. Let's try and make a POST request using Postman.
+* We are restricted to GET requests via the browser's URL window. We can use cURL or Postman to make more complicated HTTP requests. Let's try and make a POST request using Postman.
+* We get a 422: Unprocessable Entity. This is because Rails has a default configuration to reject POST requests without authenticity tokens. A protective measurement to prevent malicious CSRF attacks. Since we are building a stateless API, let's turn off the protection by removing the [protect_from_forgery](http://api.rubyonrails.org/classes/ActionController/RequestForgeryProtection.html) method in the ApplicationController.
 
-We get a 422: Unprocessable Entity. This is because Rails has a default configuration to reject POST requests without authenticity tokens. A protective measurement to prevent malicious CSRF attacks. Since we are building a stateless API, let's turn off the protection by removing the [protect_from_forgery](http://api.rubyonrails.org/classes/ActionController/RequestForgeryProtection.html) method in the ApplicationController.
+    ```ruby
+    class ApplicationController < ActionController::Base
+    end
+    ```
+* Now we are able to create Todos
 
-```ruby
-class ApplicationController < ActionController::Base
-end
-```
+#### ***UPDATE*** patch "/:id" => "todos#update"
 
-Now we are able to create Todos
+#### ***DELETE*** delete "/:id" => "todos#destroy"
 
-14. ***UPDATE*** patch "/:id" => "todos#update"
-
-15. ***DELETE*** delete "/:id" => "todos#destroy"
-
-
-16. ***DELETE*** delete "/" => "todos#destroy_all"
+#### ***DELETE*** delete "/" => "todos#destroy_all"
