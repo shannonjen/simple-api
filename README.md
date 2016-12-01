@@ -1,6 +1,6 @@
 # Simple API
 
-Let's create a simple single resource API for Todos. We will use the ActionController::Base#render method to render JSON.
+Let's create a simple single resource API for Todos. We will use the [ActionController::Base#render](http://guides.rubyonrails.org/layouts_and_rendering.html#using-render) method's :json option to convert the ActiveRecord objects to JSON and render that JSON back to the browser.
 
 1. Create a Rails App (with PostgreSQL set as Database)
 
@@ -17,12 +17,12 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
     ```bash
     $ rails g model Todo title:string
     ```
-4. Create the development and test Databases (make sure you have Postgres running)
+4. Use the "db:create" rake command to create the development and test Databases (make sure you have Postgres running)
 
     ```bash
     $ rake db:create
     ```
-5. Use a rake command to run the migration (created by the model generator) to create the todos table
+5. Use the "db:migrate" rake command to run the migration (created by the model generator) which creates the todos table
 
     ```bash
     $ rake db:migrate
@@ -125,6 +125,8 @@ Let's create a simple single resource API for Todos. We will use the ActionContr
 
 * We are restricted to GET requests via the browser's URL window. We can use cURL or Postman to make more complicated HTTP requests. Let's try and make a POST request
   * Using Postman: POST http://localhost:3000/?title=Make Millions
+
+      ![alt text]( postman.png "POSTMAN")
   * ***or*** cURL
 
       ```bash
