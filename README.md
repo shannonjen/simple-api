@@ -1,6 +1,6 @@
 # Simple API
 
-Let's create a simple single resource API for Todos. We will use the [ActionController::Base#render](http://guides.rubyonrails.org/layouts_and_rendering.html#using-render) method's :json option to convert the ActiveRecord objects to JSON and render that JSON back to the browser.
+Let's create a simple single resource API for Todos. We will use the [ActionController::Base#render](http://guides.rubyonrails.org/layouts_and_rendering.html#using-render) method's :json option to convert ActiveRecord model objects to JSON and render that JSON back to the browser. This is the default JSON serialization that comes with Rails. JSON is a language-agnotic lightweight data format. The translation of a data structure or object into a data format suitable for storage or transmission is referred to as serialization.
 
 1. Create a Rails App (with PostgreSQL set as Database)
 
